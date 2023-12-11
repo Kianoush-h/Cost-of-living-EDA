@@ -67,7 +67,31 @@ print(list(top_range))
 
 
 
+def color_producer(val):
+    if val <= df[item].quantile(.25):
+        return 'forestgreen'
+    elif val <= df[item].quantile(.50):
+        return 'goldenrod'
+    elif val <= df[item].quantile(.75):
+        return 'darkred'
+    else:
+        return 'black'
 
+
+m_1 = folium.Map(location=[df.lat.mean(),df.lon.mean()], tiles='cartodbpositron', zoom_start=2)
+
+item = top_range[0]
+
+# Add a bubble map to the base map
+for i in range(0,len(df)):
+    Circle(
+        location=[df.iloc[i]['lat'], df.iloc[i]['lon']],
+        radius=1000,
+        color=color_producer(df.iloc[i][item])).add_to(m_1)
+
+print ('Price of: ', item)
+
+m_1.show_in_browser()
 
 
 
