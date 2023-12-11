@@ -37,5 +37,5 @@ def color_producer(val):
 
 Group the cities by country using the mean of all the columns. This will give a much clearer overview when looking at the map, when trying to detect any trends.
 
-![Image 3](./plots/concatenated_plots.png)
+![Image 3](./plots/aaa.png)
 *Mapping Everything!*
