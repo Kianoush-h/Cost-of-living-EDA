@@ -193,3 +193,56 @@ for i in range(len(prices)):
 
 
 
+
+# Create subplots based on the number of prices
+fig, ax = plt.subplots(len(prices), figsize=(16, 6 * len(prices)))
+
+# Iterate over the prices
+for i, price in enumerate(prices):
+    # Extract the column from the 'world' DataFrame
+    col = world[price]
+
+    # Check if the column is a DataFrame and extract the appropriate column
+    if isinstance(col, pd.DataFrame):
+        col = col.iloc[:, c]
+        c -= 1
+        c = abs(c)
+
+    # Plot the data
+    world.plot(column=col, ax=ax[i], legend=True, legend_kwds={'label': "Cost"})
+
+    # Set subplot title
+    ax[i].set_title(price)
+
+# Adjust layout to prevent overlap
+plt.tight_layout()
+
+# Show the plots
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
