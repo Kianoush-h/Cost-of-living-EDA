@@ -1,4 +1,5 @@
 # Cost of living EDA
+Explore and analyze the cost of living across the globe with this comprehensive EDA (Exploratory Data Analysis) project. This repository contains data-driven insights into the expenses associated with daily life in different cities worldwide. From housing and transportation to groceries and entertainment, delve into the factors influencing the cost of living. Leverage visualizations and statistical analyses to uncover trends, comparisons, and valuable information for anyone considering relocation or interested in global economic trends.
 
 
 ## install libraries
