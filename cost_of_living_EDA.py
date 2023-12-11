@@ -168,7 +168,7 @@ countries = countries.sort_values(by='country').reset_index()
 world = world.merge(countries, left_on=['name'], right_on=['country'])
 
 prices = countries.columns[2:-2]
-fig, ax = plt.subplots(len(prices), figsize=(16,6*len(prices)))
+fig, ax = plt.subplots(len(prices))
 
 c = 0
 for i in range(len(prices)):
@@ -184,50 +184,50 @@ for i in range(len(prices)):
                               
     world.plot(column=col,
                 ax=ax[i],
-                legend=True,
+                legend=False,
                 legend_kwds={'label': "Cost"})
     ax[i].title.set_text(prices[i])
 
 
 
+#%%
 
 
 
+output_folder = 'output_plots'
+os.makedirs(output_folder, exist_ok=True)
 
-# Create subplots based on the number of prices
-fig, ax = plt.subplots(len(prices), figsize=(16, 6 * len(prices)))
+prices = countries.columns[2:-2]
 
-# Iterate over the prices
-for i, price in enumerate(prices):
-    # Extract the column from the 'world' DataFrame
-    col = world[price]
-
-    # Check if the column is a DataFrame and extract the appropriate column
-    if isinstance(col, pd.DataFrame):
-        col = col.iloc[:, c]
+i_list = []
+# Plot each subplot separately and save them
+for i in range(len(prices)):
+    fig, ax = plt.subplots(figsize=(16, 6))
+    
+    # Handle the repeated columns
+    if type(world[prices[i]]) is pd.DataFrame:
+        col = world[prices[i]].iloc[:, c]
         c -= 1
         c = abs(c)
+    else:
+        col = world[prices[i]]
 
-    # Plot the data
-    world.plot(column=col, ax=ax[i], legend=True, legend_kwds={'label': "Cost"})
+    world.plot(column=col, ax=ax, legend=True, legend_kwds={'label': "Cost"})
+    ax.set_title(prices[i])
 
-    # Set subplot title
-    ax[i].set_title(price)
+    # Save the individual plot
+    plot_filename = os.path.join(output_folder, f'{i}_plot.png')
+    plt.savefig(plot_filename)
+    plt.close()
+    i_list += [i]
 
-# Adjust layout to prevent overlap
-plt.tight_layout()
+# Read all the saved plots and concatenate them vertically
+all_plots = [plt.imread(os.path.join(output_folder, f'{price}_plot.png')) for price in i_list]
+concatenated_image = np.concatenate(all_plots, axis=0)
 
-# Show the plots
-plt.show()
-
-
-
-
-
-
-
-
-
+# Save the concatenated image
+output_filename = 'concatenated_plots.png'
+plt.imsave(output_filename, concatenated_image)
 
 
 

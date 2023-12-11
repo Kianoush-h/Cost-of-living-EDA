@@ -35,5 +35,7 @@ def color_producer(val):
 ![Image 2](./plots/Average_Monthly_Net_Salary.png)
 *Average Monthly Net Salary (After Tax)*
 
-group the cities by country using the mean of all the columns. This will give a much clearer overview when looking at the map, when trying to detect any trends.
+Group the cities by country using the mean of all the columns. This will give a much clearer overview when looking at the map, when trying to detect any trends.
 
+![Image 3](./plots/concatenated_plots.png)
+*Mapping Everything!*
