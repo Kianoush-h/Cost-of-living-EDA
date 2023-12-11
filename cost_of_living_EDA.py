@@ -140,18 +140,53 @@ print ('Price of: ', item)
 
 
 
+# =============================================================================
+# PART 3: Mapping a Choropleth with MatPlotLib
+# =============================================================================
+
+
+cities = gpd.read_file(gpd.datasets.get_path('naturalearth_cities'))
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+
+
+
+df['country'] = df.location.apply(lambda x: str(x).split(', ')[-1])
+countries = df.groupby('country', as_index=False).mean()
+name_change = {'Bosnia And Herzegovina' : 'Bosnia and Herz.',
+'United States' : 'United States of America',
+'Czech Republic' : 'Czechia',
+'Dominican Republic' : 'Dominican Rep.'}
+
+countries['country'] = countries.country.replace(name_change)
 
 
 
 
+world = world[world.name.isin(countries.country.values)]
+world = world.sort_values(by='name').reset_index()
+countries = countries.sort_values(by='country').reset_index()
+world = world.merge(countries, left_on=['name'], right_on=['country'])
 
+prices = countries.columns[2:-2]
+fig, ax = plt.subplots(len(prices), figsize=(16,6*len(prices)))
 
-
-
-
-
-
-
+c = 0
+for i in range(len(prices)):
+    
+    # some column names are repeated in the dataset, but the data is different.
+    # An if-else makes sure each of these repeated columns in mapped.
+    if type(world[prices[i]]) is pd.DataFrame:
+        col = world[prices[i]].iloc[:,c]
+        c -= 1
+        c = abs(c)
+    else:
+        col = world[prices[i]] 
+                              
+    world.plot(column=col,
+                ax=ax[i],
+                legend=True,
+                legend_kwds={'label': "Cost"})
+    ax[i].title.set_text(prices[i])
 
 
 
