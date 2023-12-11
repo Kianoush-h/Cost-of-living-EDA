@@ -8,6 +8,7 @@ pip3 install folium
 pip3 install geopandas
 pip3 install opencage
 ```
+* Using OpenCage to Retrieve Latitude and Longitude
 
 
 ## Analysis & Visualizations

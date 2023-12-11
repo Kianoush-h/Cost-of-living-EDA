@@ -29,6 +29,7 @@ head = df.head()
 
 # =============================================================================
 # PART 1: preparing geo maping
+# Using OpenCage to Retrieve Latitude and Longitude
 # =============================================================================
 
 geocoder = OpenCageGeocode("0eca49e8e89d4b6e9485ef2fac579f82")
@@ -53,6 +54,8 @@ df['lon'] = list_long
 
 
 
+
+df['city'] = df['location'].apply(lambda x: str(x).split(', ')[0])
 
 
 
