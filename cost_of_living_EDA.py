@@ -207,9 +207,31 @@ plt.imsave(output_filename, concatenated_image)
 
 
 
+# =============================================================================
+# PART 4: Mapping All Columns Normalized
+# =============================================================================
 
 
+data = world.iloc[:,9:]
+x = data.values
 
+min_max_scalar = preprocessing.MinMaxScaler()
+x_scaled = min_max_scalar.fit_transform(x)
+
+data_norm = pd.DataFrame(x_scaled)
+data_norm.columns = data.columns
+
+df_summary = pd.DataFrame(world['country'])
+df_summary['total'] = data_norm.iloc[:,:56].mean(axis=1)
+
+fig, ax = plt.subplots(1, figsize=(16,6))
+                              
+
+world.plot(column=df_summary['total'], ax=ax,
+            legend=True,
+            legend_kwds={'label': "Most to least expensive place to live"})
+
+ax.title.set_text("All prices normalized for each Country")
 
 
 

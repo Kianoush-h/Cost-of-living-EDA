@@ -26,6 +26,13 @@ def color_producer(val):
 
 
 ## Analysis & Visualizations
+* It looks like Switzerland, Iceland, and Norway are the most expensive of places. This can be confirmed by looking at the data below.
+
+* It's also clear that Europe and North America are some of the most expensive places on Earth.
+
+![Image 0](./plots/All_prices_normalized_for_each_Country.png)
+*All_prices_normalized_for_each_Country*
+
 # Visualizition Analysis
 
 
@@ -39,3 +46,13 @@ Group the cities by country using the mean of all the columns. This will give a 
 
 ![Image 3](./plots/all.png)
 *Mapping Everything!*
+
+
+
+# Further Analysis
+Some further areas I would like to expore in a future notebook would be:
+
+* Grouping columns by similarity. Which places are more expensive for food vs. accomodation.
+* Outliers. Which places are much cheaper or expensive for particular things, and exploring possible reasons for these.
+* Exploring the correlation between how much things cost and their countries GDP.
+
