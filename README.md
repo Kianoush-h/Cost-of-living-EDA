@@ -32,3 +32,5 @@ def color_producer(val):
 ![Image 1](./plots/Price_per_Square_Meter_to_Buy_Apartment_Outside_of_Centre.png)
 *Price per Square Meter to Buy Apartment Outside of Centre*
 
+![Image 2](./plots/Average_Monthly_Net_Salary.png)
+*Average Monthly Net Salary (After Tax)*
