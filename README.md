@@ -1,5 +1,15 @@
 # Cost of living EDA
 
+
+## install libraries
+
+```python
+pip3 install folium
+pip3 install geopandas
+pip3 install opencage
+```
+
+
 ## Analysis & Visualizations
 # Visualizition Analysis
 
