@@ -58,6 +58,12 @@ df['lon'] = list_long
 df['city'] = df['location'].apply(lambda x: str(x).split(', ')[0])
 
 
+# =============================================================================
+# PART 2: Mapping with Folium
+# =============================================================================
+
+top_range = (df.describe().loc['min',:]/df.describe().loc['max',:]).sort_values().index[2:22]
+print(list(top_range))
 
 
 
