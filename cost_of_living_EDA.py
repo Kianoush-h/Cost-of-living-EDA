@@ -167,32 +167,6 @@ world = world.sort_values(by='name').reset_index()
 countries = countries.sort_values(by='country').reset_index()
 world = world.merge(countries, left_on=['name'], right_on=['country'])
 
-prices = countries.columns[2:-2]
-fig, ax = plt.subplots(len(prices))
-
-c = 0
-for i in range(len(prices)):
-    
-    # some column names are repeated in the dataset, but the data is different.
-    # An if-else makes sure each of these repeated columns in mapped.
-    if type(world[prices[i]]) is pd.DataFrame:
-        col = world[prices[i]].iloc[:,c]
-        c -= 1
-        c = abs(c)
-    else:
-        col = world[prices[i]] 
-                              
-    world.plot(column=col,
-                ax=ax[i],
-                legend=False,
-                legend_kwds={'label': "Cost"})
-    ax[i].title.set_text(prices[i])
-
-
-
-#%%
-
-
 
 output_folder = 'output_plots'
 os.makedirs(output_folder, exist_ok=True)
