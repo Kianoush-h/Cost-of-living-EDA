@@ -95,11 +95,31 @@ m_1.show_in_browser()
 
 
 
+m_2= folium.Map(location=[df.lat.mean(),df.lon.mean()], tiles='cartodbpositron', zoom_start=2)
+item = top_range[2]
+
+# Add a bubble map to the base map
+for i in range(0,len(df)):
+    Circle(
+        location=[df.iloc[i]['lat'], df.iloc[i]['lon']],
+        radius=1000,
+        color=color_producer(df.iloc[i][item])).add_to(m_2)
+
+print ('Price of: ', item)
 
 
 
+m_3= folium.Map(location=[df.lat.mean(),df.lon.mean()], tiles='cartodbpositron', zoom_start=2)
+item = top_range[9]
 
+# Add a bubble map to the base map
+for i in range(0,len(df)):
+    Circle(
+        location=[df.iloc[i]['lat'], df.iloc[i]['lon']],
+        radius=1000,
+        color=color_producer(df.iloc[i][item])).add_to(m_3)
 
+print ('Price of: ', item)
 
 
 

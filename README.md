@@ -29,5 +29,6 @@ def color_producer(val):
 # Visualizition Analysis
 
 
-![Image 1](./plots/base_map.png)
-*A bar plot focusing on the Transactions over months.*
+![Image 1](./plots/Price_per_Square_Meter_to_Buy_Apartment_Outside_of_Centre.png)
+*Price per Square Meter to Buy Apartment Outside of Centre*
+
